@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Admin Dashboard</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<!-- CSS dosyanız varsa ekleyin -->
+</head>
+<body>
+	<h1>Admin Dashboard</h1>
+
+	<h2>Product List</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+				<th>Price</th>
+				<th>Options</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${products}">
+				<td th:text="${product.name}"></td>
+				<td th:text="${product.description}"></td>
+				<td th:text="${product.price}"></td>
+				<td><a th:href="@{/products/edit/{id}(id=${product.id})}">Update</a>
+					<form th:action="@{/products/delete/{id}(id=${product.id})}"
+						method="post" style="display: inline;">
+						<button type="submit">Delete</button>
+					</form></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h3>Add New Product</h3>
+	<form th:action="@{/products}" method="post">
+		<label for="name">Name:</label> <input type="text" id="name"
+			name="name" required /> <label for="description">Desc:</label> <input
+			type="text" id="description" name="description" required /> <label
+			for="price">Price:</label> <input type="number" id="price"
+			name="price" required />
+		<button type="submit">Add</button>
+	</form>
+
+
+
+	<br>
+	<h3>Product Search</h3>
+	<form th:action="@{/products/search}" method="get">
+		<input type="text" name="query" placeholder="Search by PName" required />
+		<button type="submit">Search</button>
+	</form>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p : ${productsearch}">
+				<td th:text="${p.name}"></td>
+				<td th:text="${p.description}"></td>
+				<td th:text="${p.price}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+
+	<br>
+	<br>
+	<h2>All Users</h2>
+	<br>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Surname</th>
+				<th>Email</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user : ${users}">
+				<td th:text="${user.name}"></td>
+				<td th:text="${user.surname}"></td>
+				<td th:text="${user.email}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	<form action="/logout" method="post" style="display: inline;">
+		<button type="submit">Logout</button>
+	</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User Dashboard</title>
+</head>
+<body>
+	<h1>User Dashboard</h1>
+
+	<h2>Product List</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${products}">
+				<td th:text="${product.name}"></td>
+				<td th:text="${product.description}"></td>
+				<td th:text="${product.price}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<a href="/logout">Logout</a>
+</body>
+</html>
