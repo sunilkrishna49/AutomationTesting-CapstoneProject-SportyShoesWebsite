@@ -1,8 +1,10 @@
 package com.controller;
 
 import com.entity.Product;
+import com.entity.Purchase;
 import com.entity.User;
 import com.service.ProductService;
+import com.service.PurchaseService;
 import com.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class ProductController {
     private ProductService productService;
 	@Autowired
     private UserService userService;
+	@Autowired
+    private PurchaseService purchaseService;
 	
     @GetMapping
     public String listProducts(Model model) {
@@ -69,7 +73,9 @@ public class ProductController {
         model.addAttribute("products", products);  
         model.addAttribute("productsearch", productsearch); 
     	List<User> users = userService.getAllUsers(); 
-        model.addAttribute("users", users);  
+        model.addAttribute("users", users);
+        List<Purchase> purchases = purchaseService.getAllPurchases();
+        model.addAttribute("purchases", purchases); 
         return "/admin/admin-dashboard"; 
     }
 

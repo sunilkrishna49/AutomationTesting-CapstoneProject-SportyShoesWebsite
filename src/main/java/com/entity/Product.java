@@ -11,8 +11,17 @@ public class Product {
     private String name;
     private String description;
     private double price;
+    private double quantity;
 
-    public Long getId() {
+    public double getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
+	}
+
+	public Long getId() {
         return id;
     }
 
