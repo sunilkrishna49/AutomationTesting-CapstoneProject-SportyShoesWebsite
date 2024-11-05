@@ -86,25 +86,26 @@
     </style>
 </head>
 <body>
-    <form th:action="@{/signup}" method="post">
-        <h1>Sign Up</h1>
-        <div>
-            <label>Email:</label>
-            <input type="email" name="email" required>
-        </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" name="password" required>
-        </div>
-        <div>
-            <label>Name:</label>
-            <input type="text" name="name" required>
-        </div>
-        <div>
-            <label>Surname:</label>
-            <input type="text" name="surname" required>
-        </div>
-        <button type="submit">Sign Up</button>
-    </form>
+	<form th:action="@{/signup}" method="post">
+	        <h1>Sign Up</h1>
+	        <div>
+	            <label for="email">Email:</label>
+	            <input type="email" id="email" name="email" required>
+	        </div>
+	        <div>
+	            <label for="password">Password:</label>
+	            <input type="password" id="password" name="password" required>
+	        </div>
+	        <div>
+	            <label for="name">Name:</label>
+	            <input type="text" id="name" name="name" required>
+	        </div>
+	        <div>
+	            <label for="surname">Surname:</label>
+	            <input type="text" id="surname" name="surname" required>
+	        </div>
+	        <button type="submit" id="signup">Sign Up</button>
+	    </form>
+		
 </body>
 </html>

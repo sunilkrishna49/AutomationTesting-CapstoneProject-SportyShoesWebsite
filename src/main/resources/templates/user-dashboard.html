@@ -3,7 +3,7 @@
 <head>
     <title>User Dashboard</title>
     <style>
-        /* Genel stil */
+        /* General Styling */
         * {
             margin: 0;
             padding: 0;
@@ -27,14 +27,15 @@
             margin-bottom: 10px;
         }
 
-        /* Tablo stili */
+        /* Table Styling */
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #ccc;
             padding: 12px;
             text-align: left;
@@ -45,7 +46,7 @@
             color: white;
         }
 
-        /* Logout bağlantısı */
+        /* Logout Link */
         a.logout {
             display: block;
             text-align: center;
@@ -62,17 +63,34 @@
             background-color: #c82333;
         }
     </style>
+    <script>
+        // Function to show an alert when item is added to cart
+        function showAlert(event) {
+            event.preventDefault(); // Prevent the form from submitting immediately
+            const form = event.target.closest("form"); // Get the form element
+            const quantityInput = form.querySelector('input[name="quantity"]');
+            const quantity = quantityInput.value;
+            if (quantity > 0) {
+                alert("Item added to cart!");
+                form.submit(); // Submit the form after showing the alert
+            } else {
+                alert("Please enter a valid quantity.");
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>User Dashboard</h1>
+    <h1 id='dashboard'>User Dashboard</h1>
 
+    <!-- Product List with Add to Cart Form -->
     <h2>Product List</h2>
     <table>
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Desc</th>
+                <th>Description</th>
                 <th>Price</th>
+                <th>Add to Cart</th>
             </tr>
         </thead>
         <tbody>
@@ -80,30 +98,22 @@
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.description}"></td>
                 <td th:text="${product.price}"></td>
+                <td>
+                    <form th:action="@{/dashboard/cart/add}" method="post">
+                        <input type="hidden" name="productId" th:value="${product.id}" />
+                        <label for="quantity">Qty:</label>
+                        <input type="number" name="quantity" min="1" max="${product.quantity}" value="1" required />
+                        <button type="submit" onclick="showAlert(event)">Add To Cart</button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>
-    <br><br>
-      <h2>Your Purchases</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Purchase Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="purchase : ${purchases}">
-                <td th:text="${purchase.product.name}"></td>
-                <td th:text="${purchase.quantity}"></td>
-                <td th:text="${purchase.purchaseDate}"></td>
-            </tr>
-        </tbody>
-    </table>
-  
 
-
-    <a class="logout" href="/logout">Logout</a>
+    <br />
+    <a href="/dashboard/cart">View Cart</a> | 
+    <a href="/dashboard/profile">Profile</a> | 
+    <a href="/dashboard/orderhistory">Order History</a> | 
+    <a href="/logout">Logout</a>
 </body>
 </html>

@@ -53,8 +53,8 @@ public class Purchase {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setQuantity(double d) {
+		this.quantity = (int) d;
 	}
 
 	public LocalDateTime getPurchaseDate() {

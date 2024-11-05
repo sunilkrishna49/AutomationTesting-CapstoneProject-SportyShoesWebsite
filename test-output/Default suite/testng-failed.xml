@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="com.sportyshoesTestCases.UserProfilePageTest">
+        <methods>
+          <include name="testEditProfileNavigation"/>
+          <include name="testLogout"/>
+          <include name="verifyUserProfilePageElements"/>
+          <include name="setupPagesAndNavigateToProfile"/>
+          <include name="tearDown"/>
+          <include name="testViewCart"/>
+          <include name="beforeTestSetup"/>
+          <include name="setUp"/>
+          <include name="testViewPastPurchases"/>
+          <include name="afterTestTearDown"/>
+        </methods>
+      </class> <!-- com.sportyshoesTestCases.UserProfilePageTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

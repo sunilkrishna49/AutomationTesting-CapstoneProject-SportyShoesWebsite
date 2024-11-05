@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order History</title>
+	<style>
+	      /* General Styling */
+	      * {
+	        margin: 0;
+	        padding: 0;
+	        box-sizing: border-box;
+	      }
+
+	      body {
+	        font-family: Arial, sans-serif;
+	        background-color: #f8f9fa;
+	        padding: 20px;
+	      }
+
+	      h1 {
+	        text-align: center;
+	        color: #333;
+	        margin-bottom: 20px;
+	      }
+
+	      h2 {
+	        color: #007bff;
+	        margin-bottom: 10px;
+	      }
+
+	      /* Table Styling */
+	      table {
+	        width: 100%;
+	        border-collapse: collapse;
+	        margin-bottom: 20px;
+	      }
+
+	      th,
+	      td {
+	        border: 1px solid #ccc;
+	        padding: 12px;
+	        text-align: left;
+	      }
+
+	      th {
+	        background-color: #007bff;
+	        color: white;
+	      }
+
+	      /* Logout Link */
+	      a.logout {
+	        display: block;
+	        text-align: center;
+	        margin-top: 20px;
+	        color: white;
+	        background-color: #dc3545;
+	        padding: 10px;
+	        border-radius: 5px;
+	        text-decoration: none;
+	        transition: background-color 0.3s ease;
+	      }
+
+	      a.logout:hover {
+	        background-color: #c82333;
+	      }
+	    </style>
+</head>
+<body>
+    <h1>Your Order History</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Purchase Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="purchase : ${purchases}">
+                <td th:text="${purchase.product.name}"></td>
+                <td th:text="${purchase.quantity}"></td>
+                <td th:text="${purchase.purchaseDate}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/dashboard">Back to Dashboard</a>
+</body>
+</html>

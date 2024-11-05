@@ -14,10 +14,18 @@
             font-family: Arial, sans-serif;
             background-color: #f0f2f5;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+        }
+
+        .welcome-message {
+            font-size: 28px;
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
 
         .login-container {
@@ -87,6 +95,10 @@
     </style>
 </head>
 <body>
+    <div class="welcome-message">
+        Welcome to Sporty Shoes
+    </div>
+
     <div class="login-container">
         <h1>Login</h1>
         <form th:action="@{/login}" method="post">
@@ -106,5 +118,10 @@
             <p th:text="${error}">Invalid username or password.</p>
         </div>
     </div>
+	
+	<!-- Success Alert Script -->
+    <script th:if="${successMessage}" th:inline="javascript">
+        alert([[${successMessage}]]);
+    </script>
 </body>
 </html>
